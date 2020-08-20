@@ -1,0 +1,94 @@
+<div class="container">
+
+  <div class="mb-4">
+
+    <h2 class="text-center mb-4 mt-4 heading">Real-time Departures</h2>
+
+    <!-- Routes dropdown -->
+    <div class="mx-auto metro-select">
+      <div class="col-sm">
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="selectedRoute"
+            [(ngModel)]="selectedRoute"
+            (ngModelChange)="changeRoute($event)">
+            <option disabled [value]="" selected>Select route</option>
+            <option *ngFor="let route of routes" [value]="route.Route">
+              {{route.Description}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Directions dropdown -->
+    <div class="mx-auto metro-select">
+      <div class="col-sm" *ngIf="this.selectedRoute">
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="selectedDirection"
+            [(ngModel)]="selectedDirection"
+            (ngModelChange)="selectDirection($event)">
+            <option disabled [value]="">Select direction</option>
+            <option *ngFor="let direction of directions" [value]="direction.Value">
+              {{direction.Text}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stops dropdown -->
+    <div class="mx-auto metro-select">
+      <div class="col-sm" *ngIf="this.selectedDirection">
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="selectedStop"
+            [(ngModel)]="selectedStop"
+            (ngModelChange)="selectStop($event)">
+            <option disabled [value]="">Select stop</option>
+            <option *ngFor="let stop of stops" [value]="stop.Value">
+              {{stop.Text}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <!-- Display all the stops in a table -->
+    <div class="row info-table" *ngIf="this.selectedStop">
+      <div class="m-2">
+        <h3 class="h2 stop-name">{{this.stops[0].Text}}</h3>
+      </div>
+      <table class="table">
+        <caption class="sr-only">Departures table</caption>
+        <thead class="thead-dark">
+        <tr>
+          <th class="route">Route</th>
+          <th class="destination">Destination</th>
+          <th class="departs text-right">Departs</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of information">
+          <td class="route">{{info.Route}}</td>
+          <td class="destination">{{info.Description}}</td>
+          <td class="departs text-right">{{info.DepartureText}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="col" *ngIf="unavailableInfo">
+        <div class="alert alert-danger" role="alert">
+          No buses available
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
