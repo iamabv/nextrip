@@ -1,6 +1,6 @@
 # Nextrip
 
-This is a web application that displays Minneapolis Metro Transit bus line information based on APIs available via Metro Transit NexTrip API. 
+This is a web application that displays Minneapolis Metro Transit bus line information based on APIs available via Metro Transit NexTrip API. This will tell you how long until your next bus arrives.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
