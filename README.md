@@ -21,6 +21,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ```
 
+## NPM packages for maps
+
+```
+npm install @types/google-maps --save
+npm i @popperjs/core
+
+Add "node_modules/@popperjs/core/dist/umd/popper.min.js" in angular.json scripts before bootstrap
+```
+
 ## Development server
 
 Run `npm start` or `ng serve --proxy-config proxy.config.json` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

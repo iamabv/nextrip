@@ -91,4 +91,24 @@
     </div>
   </div>
 
+  <!-- Pin the selected stop on the maps -->
+  <div *ngIf="latitude && longitude">
+    <a class="btn btn-primary location"
+       data-toggle="collapse"
+       href="#multiCollapseExample1"
+       role="button"
+       aria-expanded="false"
+       aria-controls="multiCollapseExample1">
+      Show location
+    </a>
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <agm-map [mapTypeId]="'hybrid'" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -16,14 +16,14 @@ export class MetroService {
   }
 
   directions(route: any): Observable<Directions[]> {
-    return this.http.get<Directions[]>('/NexTrip/Directions/' + route)
+    return this.http.get<Directions[]>('/NexTrip/Directions/' + route);
   }
 
   stops(direction: any, route: any): Observable<Stops[]> {
-    return this.http.get<Stops[]>('/NexTrip/Stops/' + route + '/' + direction)
+    return this.http.get<Stops[]>('/NexTrip/Stops/' + route + '/' + direction);
   }
 
   information(route, direction, stop): Observable<Information[]> {
-    return this.http.get<Information[]>('/NexTrip/' + route + '/' + direction + '/' + stop)
+    return this.http.get<Information[]>('/NexTrip/' + route + '/' + direction + '/' + stop);
   }
 }

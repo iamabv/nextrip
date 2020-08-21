@@ -24,14 +24,17 @@ export class MetroInfoComponent implements OnInit {
 
   latitude: number;
   longitude; number;
+  zoom: number = 8;
 
   constructor(private metroService: MetroService) { }
 
   ngOnInit(): void {
+    // call routes api on component load
     this.metroService.routes()
       .subscribe(data => this.routes = data);
   }
 
+  // Modify the route
   changeRoute(changedRoute: any) {
     this.resetRoute();
     this.selectRoute(changedRoute);
@@ -48,17 +51,20 @@ export class MetroInfoComponent implements OnInit {
     this.longitude = 0;
   }
 
+  // Call directions api after selecting the route
   selectRoute(route: any) {
     this.metroService.directions(route)
         .subscribe(data => this.directions = data);
   }
 
+  // Call stops api after selecting the direction
   selectDirection(direction: any, route: any) {
     route = this.selectedRoute;
     this.metroService.stops(direction, route)
       .subscribe(data => this.stops = data);
   }
 
+  // Call information api after selecting the stop and show map
   selectStop(stop:any) {
     this.selectedStop = stop;
     this.unavailableInfo = false;
@@ -68,6 +74,13 @@ export class MetroInfoComponent implements OnInit {
         data => {
           if (data.length > 1) {
             this.information = data;
+
+            // Set latitude and longitude for maps
+            if(data[0].VehicleLatitude && data[0].VehicleLongitude) {
+                this.latitude = data[0].VehicleLatitude;
+                this.longitude = data[0].VehicleLongitude;
+                this.zoom = 16;
+            }
           }
           else {
             this.unavailableInfo = true;
